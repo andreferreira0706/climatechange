@@ -4,6 +4,28 @@ author: "Andre Ferreira"
 output: html_document
 ---
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 <center> My regression model seeks to look beyond simply carbon emissions, and to total 
 greenhouse gas emissions in general. For countries like Brazil, there are more 
 factors at play than just co2 concentration. Deforestation of the Amazon Rainforest 

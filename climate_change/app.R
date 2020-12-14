@@ -109,8 +109,64 @@ ui <- navbarPage(
              mainPanel(plotOutput("correlation_plot"),
                        width = 700),
              br(),
-             includeMarkdown("text/text5.Rmd")))
+             includeMarkdown("text/text5.Rmd"))),
 
+  tabPanel("Geographic Data",
+           
+# Title of 3rd Page
+
+           fluidPage(
+             titlePanel("Continent & Country Data Exploration"),
+             
+             fluidPage(
+               br(),
+               br(),
+               mainPanel(plotOutput("continent_co2_plot"),
+                         width = 700),
+               br(),
+               includeMarkdown("text/text7.Rmd"),
+               br(),
+               sidebarLayout(
+                 sidebarPanel(
+                   selectInput("country",
+                               "Country",
+                               country_data$country,
+                               
+# The code above creates a panel on the side of the page, where the user can 
+# select a country from the list, and information for that country will appear 
+# in the three graph outputs 
+                               
+                               multiple = TRUE,
+
+# Multiple countries can be selected and compared with one another
+
+                               selected = "Afghanistan")),
+
+# When the page opens up, the graphs will automatically have the data appear for
+# Afghanistan
+
+                 mainPanel(plotOutput("country_co2_plot"),
+                           plotOutput("country_pop_plot"),
+                           plotOutput("country_gdp_plot")))))),
+
+tabPanel("Model",
+         
+# Title of 4th Page
+         
+         titlePanel("Model"),
+         mainPanel(imageOutput("tbl_regression_1")),
+         includeMarkdown("text/text8.Rmd"),
+         br(),
+         mainPanel(imageOutput("tbl_regression_2"))),
+
+tabPanel("About",
+         
+# Title of 5th Page
+         
+         titlePanel("About"),
+         h3("Project Background and Motivations"),
+         includeMarkdown("text/text9.Rmd"),
+         mainPanel(imageOutput("my_picture")))
 
 )
 
@@ -445,7 +501,7 @@ server <- function(input, output) {
     
     list(src = 'data/model/brazil_table.png',
          contentType = 'image/png',
-         width = 500,
+         width = 400,
          height = 400)
     
 # I discovered this code online as a way in which I could place images in my shiny
@@ -460,8 +516,8 @@ server <- function(input, output) {
     
     list(src = 'data/model/brazil_land_table.png',
          contentType = 'image/png',
-         width = 500,
-         height = 400)
+         width = 400,
+         height = 300)
     
 # I discovered this code online as a way in which I could place images in my shiny
 # app. This particular image depicts a regression table, containing information such
@@ -482,30 +538,6 @@ server <- function(input, output) {
 # of myself for the About Tab
     
   }, deleteFile = FALSE)
-  
-# Plot 15:
-  
-  output$brazil_fit_plot <- renderPlot({
-    
-    brazil_land_fit %>%
-      as_tibble() %>%
-      rename(mu = `(Intercept)`) %>%
-      ggplot(aes(x = mu)) +
-      geom_histogram(aes(y = after_stat(count/sum(count))),
-                     fill = "blue",
-                     color = "green") +
-      
-# This code above will plot my regression as a histogram so that users can get a 
-# visualization of the data
-      
-      labs(title = "Posterior Probability Distribution",
-           x = "Rating",
-           y = "Probability") +
-      theme_bw()
-    
-# The labs and theme_bw functions are used to improve the aesthetics of the graph
-    
-  })
   
 }
 

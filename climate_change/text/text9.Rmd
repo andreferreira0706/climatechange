@@ -1,0 +1,56 @@
+---
+title: "text9"
+author: "Andre Ferreira"
+output: html_document
+---
+
+This is my final project for Gov50: Data. After having worked with a climate change
+organization this summer located in Brazil, I learned tons of information about the climate
+crisis, especially having gained insight about the issue from an international perspective.
+While some countries fail to acknowledge our changing climate as a pressing priority,
+there are others dedicating their resources towards building a sustainable economy. 
+A major reason as to why there is not more climate action across the globe is because 
+people as though climate change isn't much of an issue to dedicate their time towards
+combatting. Therefore, I want to make clear within my project the correlation that 
+exists between global temperature anomalies and global carbon concentrations. Reducing emissions
+is extremely important to maintaining the wellbeing of our planet, and I attempt to make that 
+evident with my research. 
+
+<br>
+
+Data Set 1:
+
+<br>
+
+My primary data set was "Our World in Data" (https://ourworldindata.org/co2-and-other-greenhouse-gas-emissions), a site that develops emission information for a variety of countries and analyzes the effects of human activity 
+on the environment. As climate change continues to worsen and is one of the most existential 
+issues of our time, this organization feels research and data are extremely important in 
+combating these issues and achieving progress. Any information regarding carbon emissions 
+found within the project is from this site. I also used this website's country profile data 
+to learn more about Brazil and the impact of greenhouse gases as a whole. The data that surrounds
+total ghg numbers and land-use data is also from this site. 
+
+<br>
+
+Data Set 2:
+
+<br>
+
+My secondary data set is from a news outlet known as "The Conversation"  (https://theconversation.com/caribbean-residents-see-climate-change-as-a-severe-threat-but-most-in-us-dont-heres-why-91049), which analyzes public opinion trends on a variety
+of subjects. One of these being US public opinion towards the severity of climate change
+and whether its existence is the result of human activity. I felt as though it was necessary
+to include this information because it brings to light the importance of this project. Despite
+the US being the country with the second highest CO2 emissions, there is not a general consensus
+about the severity of our changing climate and a need to address it. Any data surrounding
+public opinion found within this project is from this site.
+
+<br>
+
+About Me: 
+
+My name is Andre Ferreira and I am concentrating in Government with a secondary in History. 
+This is my first ever time coding and I am extremely proud of the work that went into 
+producing this final project. Please enjoy && if you have any questions, please feel to contact
+me at andreferreira@college.harvard.edu. The Github for this project is 
+https://github.com/andreferreira0706.
+

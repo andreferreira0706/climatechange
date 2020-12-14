@@ -25,6 +25,22 @@ library(magick)
 
 ```{r}
 
+opinion_USA <- read_csv("US_political_divide.csv",
+                        col_types = cols(
+                          X.1 = col_character(),
+                          X.2 = col_double()
+                        )) %>%
+  rename("Political_Affiliation" = X.1,
+         "Percent_Believe_In_Climate_Change" = X.2)
+
+# The code above will read in the csv file I want to work with. Within the csv file,
+# contains the percentage of people in the US that believe in climate change, sorted
+# by their political affiliation: conservative, liberal, or center
+
+write_rds(opinion_USA, "opinion_USA.rds")
+
+# I created the rds file above to then read in within the app
+
 ```
 
 

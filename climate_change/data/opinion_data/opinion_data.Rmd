@@ -1,0 +1,65 @@
+---
+title: "opinion_data"
+author: "Andre Ferreira"
+output: html_document
+---
+
+```{r}
+
+library(shiny)
+library(shinythemes)
+library(PPBDS.data)
+library(ggplot2)
+library(ggthemes)
+library(tidyverse)
+library(gganimate)
+library(plotly)
+library(sf)
+library(rgdal)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(gtsummary)
+library(magick)
+
+```
+
+```{r}
+
+opinion_data <- read_csv("climate_change_seriousness.csv",
+                         col_types = cols(
+                           Location = col_character(),
+                           `Not serious at all` = col_double(),
+                           `A little serious` = col_double(),
+                           `Somewhat serious` = col_double(),
+                           `Very serious` = col_double()
+                         )) %>%
+  
+# The code above will read in the csv file I want to work with. Within the csv file,
+# contains public opinion regarding the seriousness of climate change in the United
+# States and some Caribbean countries. The four different selections include whether
+# respondents believe climate change is not serious at all, a little serious, somewhat
+# serious, and very serious. 
+  
+  rename("Not_serious_at_all" = `Not serious at all`,
+         "A_little_serious" = `A little serious`,
+         "Somewhat_serious" = `Somewhat serious`,
+         "Very_serious" = `Very serious`) %>%
+  
+# Data cleaning
+  
+  filter(Location == "United States") %>%
+  
+# The only public opinion needed for my project is that of the United States, so I
+# filtered as such for only that country's data
+  
+  pivot_longer(cols = Not_serious_at_all:Very_serious,
+               names_to = "Attitudes",
+               values_to = "Values")
+
+# I then condense the 4 columns that respondents had to choose from, and create 2 
+# new columns to use in a graph in my project: attitudes and values
+
+write_rds(opinion_data, "opinion_data.rds")
+  
+```
+

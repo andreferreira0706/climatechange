@@ -1,0 +1,116 @@
+---
+title: "country_data"
+author: "Andre Ferreira"
+output: html_document
+---
+
+```{r}
+
+library(shiny)
+library(shinythemes)
+library(PPBDS.data)
+library(ggplot2)
+library(ggthemes)
+library(tidyverse)
+library(gganimate)
+library(plotly)
+library(sf)
+library(rgdal)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(gtsummary)
+library(magick)
+
+```
+
+```{r}
+
+country_data <- read_csv("country_info.csv",
+                         col_types = cols(
+                           .default = col_double(),
+                           iso_code = col_character(),
+                           country = col_character()
+                         )) %>%
+  
+# The code above will read in the csv file I want to work with. Within the csv file,
+# contains loads of information regarding countries across the globe, including
+# carbon emissions, gdp, population, etc. 
+  
+  drop_na(iso_code) %>%
+  filter(year >= 1990,
+         country != "World")
+
+# I filtered above to gather data only from the last 30 years
+
+write_rds(country_data, 
+          "country_data.rds")
+
+# I created the rds file above to then read in within the app
+  
+```
+
+```{r}
+
+world <- ne_countries(scale = "medium",
+                      returnclass = "sf") %>%
+  rename("country" = name,
+         "iso_code" = sov_a3)
+
+# This object will help to later produce a map with geom_sf && I renamed 
+# variables so that when I later merged this data with that of country_data_2, I had 
+# a common column name to merge by 
+
+write_rds(world,
+          "world.rds")
+
+# I created the rds file above to then read in within the app
+
+```
+
+```{r}
+
+country_data_2 <- country_data %>%
+  select(country, year, 
+         share_global_co2, 
+         iso_code) %>%
+  filter(year >= 2018,
+         iso_code != "OWID_WRL")
+
+# This is the data that will be merged with the world object, and only contains the 
+# most recent year of data. This will project the share of global co2 by country
+# on the map
+
+write_rds(country_data_2, 
+          "country_data_2.rds")
+
+# I created the rds file above to then read in within the app
+
+```
+
+```{r}
+
+world_map <- full_join(world, 
+                       country_data_2, 
+                       by = "country") %>%
+  ggplot() +
+  geom_sf(aes(fill = share_global_co2)) +
+  
+# This code above will produce a map, with the countries filled in with a color 
+# that represents their global co2 share on a scale
+  
+  labs(title = "World Plot Depicting Global CO2 Share") +
+  scale_fill_continuous(name = "Percentage of CO2 Share")
+
+# The code above provides a title for the map and changes the legend name for the
+# scale
+
+write_rds(world_map, "world_map.rds")
+
+# I created the rds file above to then read in within the app
+
+```
+
+
+
+
+

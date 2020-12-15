@@ -49,7 +49,7 @@ public opinion found within this project is from this site.
 About Me: 
 
 My name is Andre Ferreira and I am concentrating in Government with a secondary in History. 
-This is my first ever time coding and I am extremely proud of the work that went into 
+This is my first time coding and I am extremely proud of the work that went into 
 producing this final project. Please enjoy && if you have any questions, please feel to contact
 me at andreferreira@college.harvard.edu. The Github for this project is 
 https://github.com/andreferreira0706.
